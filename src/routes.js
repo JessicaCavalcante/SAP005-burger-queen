@@ -2,7 +2,7 @@ import React from 'react';
 import { Login } from '../src/pages/login/index.js';
 import { Register } from '../src/pages/register/index.js';
 import { Kitchen } from './pages/kitchen/index.js';
-import { Service } from '../src/pages/room-service/index.js';
+import { Service } from '../src/pages/service/index.js';
 import { Switch, Route } from 'react-router-dom';
 
 export const Routes = () => {
