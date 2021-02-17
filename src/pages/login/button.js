@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HookButton(props) {
+export default function ButtonCustom(props) {
   const classes = useStyles();
-  return <Button className={classes.root} onClick={props.onClick}>Criar novo Usuário</Button>;
+  return <Button className={classes.root} onClick={props.onClick}>Logar</Button>;
 }

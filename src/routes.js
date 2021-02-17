@@ -14,4 +14,11 @@ export const Routes = () => {
       <Route path="/service" component={Service} exact />
     </Switch>
   );
+
+  /*function requireAuth(next, replace) {
+    console.log(localStorage.getItem('token'));
+    if (!localStorage.getItem('token')) {
+      return true;
+    }
+  }*/
 }
