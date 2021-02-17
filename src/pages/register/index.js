@@ -71,8 +71,8 @@ export const Register = () => {
       <TextField error={(result.status === 400 && !password)} id="outlined-basicss" label="Password" variant="outlined" type="password" required fullWidth value={password} onChange={(event) => setPassword(event.target.value)} />
       <Box component="div">
         <TextField error={(result.status === 400 && !role)} id="select" label="Cargo" select required fullWidth value={role} onChange={(event) => setRole(event.target.value)}>
-          <MenuItem value='cozinha'>Cozinha</MenuItem>
-          <MenuItem value='salao'>Salão</MenuItem>
+          <MenuItem value='kitchen'>Cozinha</MenuItem>
+          <MenuItem value='service'>Salão</MenuItem>
         </TextField>
       </Box>
       <ButtonCustom onClick={(event) => handleSubmit(event)} />
