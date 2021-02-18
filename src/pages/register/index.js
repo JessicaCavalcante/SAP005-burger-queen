@@ -41,6 +41,7 @@ export const Register = () => {
           setEmail('');
           setPassword('');
           setRole('');
+          alert('Uusário criado com sucesso. Agora é só logar!')
           history.push('/');
         } else if (response.status === 403) {
           setResult({status:403, message:'E-mail já cadastrado'});
@@ -56,7 +57,7 @@ export const Register = () => {
   return (
     <div>
     <Container maxWidth="xs" component="main" style={{ backgroundColor: '#fff', height: '80vh', marginTop: '10vh'}}>
-    <Typography component="h1" variant="h3" style={{ fontWeight: 'bolder', color: '#3e9920', marginLeft: '0.5rem' }}>
+    <Typography component="h1" variant="h4" style={{ fontWeight: 'bolder', color: '#3e9920', marginLeft: '0.5rem' }}>
       La Pancita Burger
     </Typography>
     <Typography component="h2" variant="h5" style={{ fontWeight: 'normal', color: 'black', marginTop: '4vh', marginBottom: '2vh', marginLeft: '0.5rem'}}>
@@ -79,7 +80,7 @@ export const Register = () => {
       <Box component="p" style={{ marginLeft: '0.5rem', fontSize: '1.2rem'}}>
         <span> Se já possui registro <Link to='/'> Ir para Login</Link></span>
       </Box>
-      </form>
+    </form>
     </Container>
     </div>
   )
