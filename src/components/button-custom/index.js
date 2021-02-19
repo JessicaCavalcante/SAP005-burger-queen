@@ -20,5 +20,5 @@ const useStyles = makeStyles({
 
 export default function ButtonCustom(props) {
   const classes = useStyles();
-  return <Button className={classes.root} onClick={props.onClick}>Logar</Button>;
+  return <Button className={classes.root} onClick={props.onClick}>{props.content}</Button>;
 }

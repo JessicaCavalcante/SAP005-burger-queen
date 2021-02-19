@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import ButtonCustom from './button';
+import ButtonCustom from '../button-custom/index.js';
 
 export const Logout = () => {
   const history = useHistory();
@@ -12,7 +12,7 @@ export const Logout = () => {
   }
   return (
     <div>
-    <ButtonCustom onClick={() => handleLogout()} />
+    <ButtonCustom onClick={() => handleLogout()} content="Sair" />
     </div>
   )
 };
