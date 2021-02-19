@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link , useHistory} from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { Box, Typography } from '@material-ui/core';
-import ButtonCustom from './button';
+import ButtonCustom from '../../components/button-custom/index';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from "@material-ui/lab/Alert";
@@ -67,7 +67,7 @@ export const Login = () => {
     <form className={classes.root} noValidate autoComplete="off">
       <TextField error={(result.status === 400 && !email)} id="outlined-basics" label="E-mail" variant="outlined" type="email" required fullWidth value={email} onChange={(event) => setEmail(event.target.value)} />
       <TextField error={(result.status === 400 && !password)} id="outlined-basicss" label="Senha" variant="outlined" type="password" required fullWidth value={password} onChange={(event) => setPassword(event.target.value)} />
-      <ButtonCustom onClick={(event) => handleSubmit(event)} />
+      <ButtonCustom onClick={(event) => handleSubmit(event)} content="Logar" />
       <Box component="p" style={{ marginLeft: '0.5rem', fontSize: '1.2rem'}}>
         <span> Se ainda não possui registro <Link to='/register'> Ir para Registro</Link></span>
       </Box>

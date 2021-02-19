@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { Box, Typography } from '@material-ui/core';
-import ButtonCustom from './button';
+import ButtonCustom from '../../components/button-custom/index';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
@@ -76,7 +76,7 @@ export const Register = () => {
           <MenuItem value='service'>Salão</MenuItem>
         </TextField>
       </Box>
-      <ButtonCustom onClick={(event) => handleSubmit(event)} />
+      <ButtonCustom onClick={(event) => handleSubmit(event)} content="Criar Usuário" />
       <Box component="p" style={{ marginLeft: '0.5rem', fontSize: '1.2rem'}}>
         <span> Se já possui registro <Link to='/'> Ir para Login</Link></span>
       </Box>
