@@ -19,17 +19,17 @@ const useStyles = makeStyles({
   }
 });
 
-export const Breakfast =  () => {
+export const Breakfast =  (props) => {
   const classes = useStyles();
   
   return (
     <div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{width: '100%', marginLeft: '0px', marginRight: '0px'}}>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={3}>
-                Café de manhã
+              <TableCell align="left" colSpan={3} style={{fontWeight: 'bolder', backgroundColor: '#8bc34a', color: '#fff', fontSize:'1rem', textAlign: 'center'}}>
+                Café da manhã
               </TableCell>
             </TableRow>
             <TableRow>
@@ -40,73 +40,23 @@ export const Breakfast =  () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>Café americano</TableCell>
+              <TableCell>{props.product}</TableCell>
               <TableCell align="left">5,00</TableCell>
               <TableCell align="left">
                 <ToggleButtonGroup size="small">
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="quantity">
-                    <ExposureZeroOutlinedIcon />
-                  </ToggleButton>
                   <ToggleButton value="remove-icon" >
                     <RemoveOutlinedIcon />
                   </ToggleButton>
-                </ToggleButtonGroup>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Café com leite</TableCell>
-              <TableCell align="left">7,00</TableCell>
-              <TableCell align="left">
-                <ToggleButtonGroup>
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
                   <ToggleButton value="quantity">
                     <ExposureZeroOutlinedIcon />
                   </ToggleButton>
-                  <ToggleButton value="remov-icon">
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Misto Quente</TableCell>
-              <TableCell align="left">10,00</TableCell>
-              <TableCell align="left">
-                <ToggleButtonGroup>
                   <ToggleButton value="add-icon">
                     <AddOutlinedIcon />
                   </ToggleButton>
-                  <ToggleButton value="quantity">
-                    <ExposureZeroOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="remove-icon">
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
                 </ToggleButtonGroup>
               </TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>Suco de fruta natural</TableCell>
-              <TableCell align="left">1,00</TableCell>
-              <TableCell align="left">
-                <ToggleButtonGroup>
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="quantity">
-                    <ExposureZeroOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="remove-icon">
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </TableCell>
-            </TableRow>
+            
           </TableBody>
         </Table>
       </TableContainer>
