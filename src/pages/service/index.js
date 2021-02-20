@@ -1,16 +1,17 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
 import { Logout } from '../../components/logout';
-import { Breakfast } from '../../components/products/breakfast/index.js';
+import { NavTabs } from '../../components/products/tab/index.js';
+import Container from '@material-ui/core/Container';
 
 export const Service = () => {
   return (
     <div>
     <p>Página em construção</p>
       <Logout />
-    <div>
-      <Breakfast />
-    </div>
+    <Container>
+      <NavTabs />
+    </Container>
     </div>
   )
 };
