@@ -40,7 +40,6 @@ export const Login = () => {
          return response.json()
       })
       .then((json) => {
-        console.log(json);
         if (json.token && json.id) {
           localStorage.setItem('token', json.token);
           localStorage.setItem('userId', json.id);

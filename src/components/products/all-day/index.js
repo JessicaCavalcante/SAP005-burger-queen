@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 export const AllDay = (props) => {
-  console.log(props.products['hamburguer']);
+
   const classes = useStyles();
 
   return (
