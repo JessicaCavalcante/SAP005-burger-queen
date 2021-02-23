@@ -10,16 +10,16 @@ import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
-import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
+//import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
 import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import IconButton from "@material-ui/core/IconButton";
-import Collapse from "@material-ui/core/Collapse";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
+//import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+//import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+//import IconButton from "@material-ui/core/IconButton";
+//import Collapse from "@material-ui/core/Collapse";
+//import Radio from "@material-ui/core/Radio";
+//import RadioGroup from "@material-ui/core/RadioGroup";
+//import FormControlLabel from "@material-ui/core/FormControlLabel";
+//import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles({
   table: {
@@ -28,8 +28,8 @@ const useStyles = makeStyles({
 });
 
 export const AllDay = (props) => {
+  console.log(props.products['hamburguer']);
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
   return (
     <TableContainer component={Paper} style={{width: '97%', marginLeft: '0.5rem', marginRight: '0.5rem'}}>
@@ -48,72 +48,35 @@ export const AllDay = (props) => {
           <TableRow>
             <TableCell>Opções</TableCell>
             <TableCell align="left">Preço</TableCell>
-            <TableCell align="left" colSpan={3}>
+            <TableCell align="left">
               Quantidade
             </TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>
-              <IconButton
-                aria-label="expand row"
-                size="small"
-                onClick={() => setOpen(!open)}
-              >
-                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-              </IconButton>{props.productBurger}
-            </TableCell>
-            
-            <TableCell align="left">10,00</TableCell>
-            <TableCell align="left">
-              <ToggleButtonGroup size="small">
-                <ToggleButton value="remove-icon">
-                  <RemoveOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="quantity">
-                  <ExposureZeroOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="add-icon">
-                  <AddOutlinedIcon />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-              <Collapse in={open} timeout="auto" unmountOnExit>
-                <FormControl component="fieldset">
-                  <RadioGroup
-                    row
-                    aria-label="position"
-                    name="position"
-                    defaultValue="a"
-                  >
-                    <FormControlLabel
-                      value="a"
-                      control={<Radio color="primary" />}
-                      label="Sem adicional"
-                      labelPlacement="end"
-                    />
-                    <FormControlLabel
-                      value="b"
-                      control={<Radio color="primary" />}
-                      label="Adicional Ovo"
-                      labelPlacement="end"
-                    />
-                    <FormControlLabel
-                      value="c"
-                      control={<Radio color="primary" />}
-                      label="Adicional Queijo"
-                      labelPlacement="end"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </Collapse>
-            </TableCell>
-          </TableRow>
-        </TableBody>
+        {
+          props.products['hamburguer'].map((product, index) => (
+            <TableBody key={index}>
+              <TableRow>
+                <TableCell>{product.complement ? product.name + " " +product.flavor + " adicional " + product.complement : product.name + " " + product.flavor}</TableCell>
+                <TableCell align="left">{product.price}</TableCell>
+                <TableCell align="left">
+                  <ToggleButtonGroup size="small">
+                    <ToggleButton value="remove-icon">
+                      <RemoveOutlinedIcon />
+                    </ToggleButton>
+                    <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
+                      0
+                    </ToggleButton>
+                    <ToggleButton value="add-icon">
+                      <AddOutlinedIcon />
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                </TableCell>
+              </TableRow>
+
+            </TableBody>
+          ))
+        }
 
         <TableHead>
           <TableRow>
@@ -128,23 +91,27 @@ export const AllDay = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>{props.productSideDish}</TableCell>
-            <TableCell align="left">5,00</TableCell>
-            <TableCell align="left">
-              <ToggleButtonGroup size="small">
-                <ToggleButton value="remove-icon">
-                  <RemoveOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="quantity">
-                  <ExposureZeroOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="add-icon">
-                  <AddOutlinedIcon />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </TableCell>
-          </TableRow>
+        {
+          props.products['side'].map((product, index) => (
+            <TableRow key={index}>
+              <TableCell>{product.name}</TableCell>
+              <TableCell align="left">{product.price}</TableCell>
+              <TableCell align="left">
+                <ToggleButtonGroup size="small">
+                  <ToggleButton value="remove-icon">
+                    <RemoveOutlinedIcon />
+                  </ToggleButton>
+                  <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
+                    0
+                  </ToggleButton>
+                  <ToggleButton value="add-icon">
+                    <AddOutlinedIcon />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </TableCell>
+            </TableRow>
+          ))
+        }
         </TableBody>
 
         <TableHead>
@@ -160,23 +127,27 @@ export const AllDay = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>{props.productDrink}</TableCell>
-            <TableCell align="left">5,00</TableCell>
-            <TableCell align="left">
-              <ToggleButtonGroup size="small">
-                <ToggleButton value="remove-icon">
-                  <RemoveOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="quantity">
-                  <ExposureZeroOutlinedIcon />
-                </ToggleButton>
-                <ToggleButton value="add-icon">
-                  <AddOutlinedIcon />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </TableCell>
-          </TableRow>
+        {
+          props.products['drinks'].map((product, index) => (
+            <TableRow key={index}>
+              <TableCell>{product.name}</TableCell>
+              <TableCell align="left">{product.price}</TableCell>
+              <TableCell align="left">
+                <ToggleButtonGroup size="small">
+                  <ToggleButton value="remove-icon">
+                    <RemoveOutlinedIcon />
+                  </ToggleButton>
+                  <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
+                    0
+                  </ToggleButton>
+                  <ToggleButton value="add-icon">
+                    <AddOutlinedIcon />
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </TableCell>
+            </TableRow>
+            ))
+          } 
         </TableBody>
       </Table>
     </TableContainer>
