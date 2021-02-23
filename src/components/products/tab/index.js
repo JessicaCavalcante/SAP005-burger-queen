@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Breakfast } from '../../products/breakfast/index.js';
 import { AllDay } from '../../products/all-day/index.js';
+import { OrderResume } from '../order-resume/index.js';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -464,7 +465,7 @@ export const NavTabs = () => {
       <AllDay products={dataProducts['all-day']} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <Breakfast />
+      <OrderResume />
       </TabPanel>
     </div>
   );
