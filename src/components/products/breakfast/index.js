@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
-import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
+//import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
 import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
 
 const useStyles = makeStyles({
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Breakfast =  (props) => {
+export const Breakfast = (props) => {
   const classes = useStyles();
   
   return (
@@ -39,24 +39,27 @@ export const Breakfast =  (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>{props.product}</TableCell>
-              <TableCell align="left">5,00</TableCell>
-              <TableCell align="left">
-                <ToggleButtonGroup size="small">
-                  <ToggleButton value="remove-icon" >
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="quantity">
-                    <ExposureZeroOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
-                </ToggleButtonGroup>
-              </TableCell>
-            </TableRow>
-            
+            {
+              props.products.map((product, index) => (
+                <TableRow key={index}>
+                  <TableCell>{product.name}</TableCell>
+                  <TableCell align="left">{product.price}</TableCell>
+                  <TableCell align="left">
+                    <ToggleButtonGroup size="small">
+                      <ToggleButton value="remove-icon" >
+                        <RemoveOutlinedIcon />
+                      </ToggleButton>
+                      <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
+                        0
+                      </ToggleButton>
+                      <ToggleButton value="add-icon">
+                        <AddOutlinedIcon />
+                      </ToggleButton>
+                    </ToggleButtonGroup>
+                  </TableCell>
+                </TableRow>
+              ))
+            }
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,8 +22,8 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
+        <Box component="div" style={{marginTop: '0.5rem'}}>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -64,6 +64,54 @@ const useStyles = makeStyles((theme) => ({
 
 export const NavTabs = () => {
   const classes = useStyles();
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    fetch('https://lab-api-bq.herokuapp.com/products/', {
+      method: 'GET',
+        headers: {
+          'Authorization': token,
+        },
+      })
+      .then(result => result.json())
+        .then(result => {
+          console.log(result)
+          setProducts(result)
+        })
+      }, []);
+
+
+  const formatApi = () => {
+    let newResponse = {
+      "breakfast": [],
+      "all-day": {
+        "hamburguer": [],
+        "side": [],
+        "drinks": [],
+      },
+    };
+    
+    products.forEach((product) => {
+      if (product.type === "breakfast") {
+        newResponse['breakfast'].push(product);
+        return;
+      }
+      if (product.sub_type === "side" || product.sub_type === "drinks") {
+        newResponse['all-day'][product.sub_type].push(product);
+        return;
+      }
+      newResponse['all-day'][product.sub_type].push(product);
+      return;
+      
+    })
+    return newResponse;
+  }
+
+  const dataProducts = formatApi();
+
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -85,10 +133,10 @@ export const NavTabs = () => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Breakfast />
+        <Breakfast products={dataProducts['breakfast']}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <AllDay />
+      <AllDay products={dataProducts['all-day']} />
       </TabPanel>
       <TabPanel value={value} index={2}>
       <OrderResume />
