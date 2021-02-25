@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,11 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
-//import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
-import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
+import { ToggleButtonCustom } from '../../button-toggle/index.js';
 
 const useStyles = makeStyles({
   table: {
@@ -21,7 +17,7 @@ const useStyles = makeStyles({
 
 export const Breakfast = (props) => {
   const classes = useStyles();
-  
+
   return (
     <div>
       <TableContainer component={Paper} style={{width: '100%', marginLeft: '0px', marginRight: '0px'}}>
@@ -43,19 +39,9 @@ export const Breakfast = (props) => {
               props.products.map((product, index) => (
                 <TableRow key={index}>
                   <TableCell>{product.name}</TableCell>
-                  <TableCell align="left">{product.price}</TableCell>
+                  <TableCell align="left">{product.price},00</TableCell>
                   <TableCell align="left">
-                    <ToggleButtonGroup size="small">
-                      <ToggleButton value="remove-icon" >
-                        <RemoveOutlinedIcon />
-                      </ToggleButton>
-                      <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
-                        0
-                      </ToggleButton>
-                      <ToggleButton value="add-icon">
-                        <AddOutlinedIcon />
-                      </ToggleButton>
-                    </ToggleButtonGroup>
+                    <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
                   </TableCell>
                 </TableRow>
               ))

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import ButtonCustom from '../button-custom/index.js';
+import Button from '@material-ui/core/Button';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 export const Logout = () => {
   const history = useHistory();
@@ -12,7 +13,9 @@ export const Logout = () => {
   }
   return (
     <div>
-    <ButtonCustom onClick={() => handleLogout()} content="Sair" />
+      <Button variant="contained" onClick={() => handleLogout()} content="Sair">
+        <ExitToAppIcon />
+      </Button>
     </div>
   )
 };
