@@ -7,19 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
-//import ExposureZeroOutlinedIcon from "@material-ui/icons/ExposureZeroOutlined";
-import RemoveOutlinedIcon from "@material-ui/icons/RemoveOutlined";
-//import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-//import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-//import IconButton from "@material-ui/core/IconButton";
-//import Collapse from "@material-ui/core/Collapse";
-//import Radio from "@material-ui/core/Radio";
-//import RadioGroup from "@material-ui/core/RadioGroup";
-//import FormControlLabel from "@material-ui/core/FormControlLabel";
-//import FormControl from "@material-ui/core/FormControl";
+import { ToggleButtonCustom } from '../../button-toggle/index.js';
+
 
 const useStyles = makeStyles({
   table: {
@@ -58,19 +47,9 @@ export const AllDay = (props) => {
             <TableBody key={index}>
               <TableRow>
                 <TableCell>{product.complement ? product.name + " " +product.flavor + " adicional " + product.complement : product.name + " " + product.flavor}</TableCell>
-                <TableCell align="left">{product.price}</TableCell>
+                <TableCell align="left">{product.price},00</TableCell>
                 <TableCell align="left">
-                  <ToggleButtonGroup size="small">
-                    <ToggleButton value="remove-icon">
-                      <RemoveOutlinedIcon />
-                    </ToggleButton>
-                    <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
-                      0
-                    </ToggleButton>
-                    <ToggleButton value="add-icon">
-                      <AddOutlinedIcon />
-                    </ToggleButton>
-                  </ToggleButtonGroup>
+                  <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
                 </TableCell>
               </TableRow>
 
@@ -95,19 +74,9 @@ export const AllDay = (props) => {
           props.products['side'].map((product, index) => (
             <TableRow key={index}>
               <TableCell>{product.name}</TableCell>
-              <TableCell align="left">{product.price}</TableCell>
+              <TableCell align="left">{product.price},00</TableCell>
               <TableCell align="left">
-                <ToggleButtonGroup size="small">
-                  <ToggleButton value="remove-icon">
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
-                    0
-                  </ToggleButton>
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
-                </ToggleButtonGroup>
+                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
               </TableCell>
             </TableRow>
           ))
@@ -131,19 +100,9 @@ export const AllDay = (props) => {
           props.products['drinks'].map((product, index) => (
             <TableRow key={index}>
               <TableCell>{product.name}</TableCell>
-              <TableCell align="left">{product.price}</TableCell>
+              <TableCell align="left">{product.price},00</TableCell>
               <TableCell align="left">
-                <ToggleButtonGroup size="small">
-                  <ToggleButton value="remove-icon">
-                    <RemoveOutlinedIcon />
-                  </ToggleButton>
-                  <ToggleButton value="quantity" style={{fontSize: '1rem'}}>
-                    0
-                  </ToggleButton>
-                  <ToggleButton value="add-icon">
-                    <AddOutlinedIcon />
-                  </ToggleButton>
-                </ToggleButtonGroup>
+                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
               </TableCell>
             </TableRow>
             ))

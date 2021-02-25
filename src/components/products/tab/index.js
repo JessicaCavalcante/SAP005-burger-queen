@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const NavTabs = () => {
+export const NavTabs = (props) => {
   const classes = useStyles();
 
   const [products, setProducts] = useState([]);
@@ -77,9 +77,11 @@ export const NavTabs = () => {
       })
       .then(result => result.json())
         .then(result => {
-          console.log(result)
+          if (result.code && result.code === 401) {
+            result = [];
+          }
           setProducts(result)
-        })
+        }).catch(() => {setProducts([])})
       }, []);
 
 
@@ -109,6 +111,7 @@ export const NavTabs = () => {
     return newResponse;
   }
 
+
   const dataProducts = formatApi();
 
 
@@ -133,13 +136,13 @@ export const NavTabs = () => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Breakfast products={dataProducts['breakfast']}/>
+        <Breakfast products={dataProducts['breakfast']} addProductToQuote={props.addProductToQuote}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <AllDay products={dataProducts['all-day']} />
+        <AllDay products={dataProducts['all-day']} addProductToQuote={props.addProductToQuote} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <OrderResume />
+        <OrderResume />
       </TabPanel>
     </div>
   );
