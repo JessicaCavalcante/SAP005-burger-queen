@@ -23,7 +23,7 @@ export const Header = () => {
           <Typography variant="h6" className={classes.title}>
             La Pancita Burger
           </Typography>
-          <Logout />
+          <Logout content="Sair"/>
         </Toolbar>
       </AppBar>
     </div>
