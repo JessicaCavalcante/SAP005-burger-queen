@@ -4,6 +4,7 @@ import { NavTabs } from '../../components/products/tab/index.js';
 import Container from '@material-ui/core/Container';
 import { Box } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { Header } from '../../components/header/index.js';
 
 export const Service = () => {
 
@@ -47,7 +48,9 @@ export const Service = () => {
 
   return (
     <div>
-      <Logout />
+      <nav>
+        <Header />
+      </nav>
     <Container style={{width: '84vw'}}>
       <Box component="div" style={{marginBottom: '1rem'}}>
 
