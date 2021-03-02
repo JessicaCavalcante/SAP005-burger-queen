@@ -36,12 +36,12 @@ export const Breakfast = (props) => {
           </TableHead>
           <TableBody>
             {
-              props.products.map((product, index) => (
+              props.menu.map((product, index) => (
                 <TableRow key={index}>
                   <TableCell>{product.name}</TableCell>
                   <TableCell align="left">{product.price},00</TableCell>
                   <TableCell align="left">
-                    <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
+                    <ToggleButtonCustom addProductToQuote={props.addProductToQuote} product={product} products={props.products} />
                   </TableCell>
                 </TableRow>
               ))

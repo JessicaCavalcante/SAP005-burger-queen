@@ -19,6 +19,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`nav-tabpanel-${index}`}
       aria-labelledby={`nav-tab-${index}`}
+      value={`value-${index}`}
       {...other}
     >
       {value === index && (
@@ -82,7 +83,7 @@ export const NavTabs = (props) => {
           }
           setProducts(result)
         }).catch(() => {setProducts([])})
-      }, []);
+  }, []);
 
 
   const formatApi = () => {
@@ -128,21 +129,21 @@ export const NavTabs = (props) => {
           variant="fullWidth"
           value={value}
           onChange={handleChange}
-          aria-label="nav tabs example"
+          aria-label="nav tabs"
         >
-          <LinkTab label="Café da manhã" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Durante o dia" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Resumo de Pedido" href="/spam" {...a11yProps(2)} />
+          <LinkTab label="Café da manhã" href="#breakfast" {...a11yProps(0)} />
+          <LinkTab label="Durante o dia" href="#all-day" {...a11yProps(1)} />
+          <LinkTab label="Resumo do Pedido" href="#order-resume" {...a11yProps(2)} />
         </Tabs>
-      </AppBar>
+      </AppBar> 
       <TabPanel value={value} index={0}>
-        <Breakfast products={dataProducts['breakfast']} addProductToQuote={props.addProductToQuote}/>
+        <Breakfast menu={dataProducts['breakfast']} addProductToQuote={props.addProductToQuote} products={props.products} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <AllDay products={dataProducts['all-day']} addProductToQuote={props.addProductToQuote} />
+        <AllDay menu={dataProducts['all-day']} addProductToQuote={props.addProductToQuote} products={props.products} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <OrderResume />
+        <OrderResume addProductToQuote={props.addProductToQuote} products={props.products} client={props.client} table={props.table} total={props.total} />
       </TabPanel>
     </div>
   );
