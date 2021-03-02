@@ -21,7 +21,7 @@ export const AllDay = (props) => {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} style={{width: '97%', marginLeft: '0.5rem', marginRight: '0.5rem'}}>
+    <TableContainer component={Paper} style={{width: '100%', marginLeft: '0px', marginRight: '0px'}}>
       <Table className={classes.table} aria-label="spanning table">
         <TableHead>
           <TableRow>
@@ -43,13 +43,13 @@ export const AllDay = (props) => {
           </TableRow>
         </TableHead>
         {
-          props.products['hamburguer'].map((product, index) => (
+          props.menu['hamburguer'].map((product, index) => (
             <TableBody key={index}>
               <TableRow>
                 <TableCell>{product.complement ? product.name + " " +product.flavor + " adicional " + product.complement : product.name + " " + product.flavor}</TableCell>
                 <TableCell align="left">{product.price},00</TableCell>
                 <TableCell align="left">
-                  <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
+                  <ToggleButtonCustom addProductToQuote={props.addProductToQuote} product={product} products={props.products}/>
                 </TableCell>
               </TableRow>
 
@@ -71,12 +71,12 @@ export const AllDay = (props) => {
         </TableHead>
         <TableBody>
         {
-          props.products['side'].map((product, index) => (
+          props.menu['side'].map((product, index) => (
             <TableRow key={index}>
               <TableCell>{product.name}</TableCell>
               <TableCell align="left">{product.price},00</TableCell>
               <TableCell align="left">
-                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
+                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} product={product} products={props.products}/>
               </TableCell>
             </TableRow>
           ))
@@ -97,12 +97,12 @@ export const AllDay = (props) => {
         </TableHead>
         <TableBody>
         {
-          props.products['drinks'].map((product, index) => (
+          props.menu['drinks'].map((product, index) => (
             <TableRow key={index}>
               <TableCell>{product.name}</TableCell>
               <TableCell align="left">{product.price},00</TableCell>
               <TableCell align="left">
-                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} productId={product.id}/>
+                <ToggleButtonCustom addProductToQuote={props.addProductToQuote} product={product} products={props.products}/>
               </TableCell>
             </TableRow>
             ))
