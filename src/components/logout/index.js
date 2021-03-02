@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { FormatAlignRight } from '@material-ui/icons';
 
 export const Logout = () => {
   const history = useHistory();
@@ -12,11 +13,9 @@ export const Logout = () => {
     }
   }
   return (
-    <div>
-      <Button variant="contained" onClick={() => handleLogout()} content="Sair">
-        <ExitToAppIcon />
-      </Button>
-    </div>
+  <Button variant="outline" onClick={() => handleLogout()} content="Sair">
+    <ExitToAppIcon />
+  </Button>
   )
 };
   
