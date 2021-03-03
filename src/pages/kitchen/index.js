@@ -1,12 +1,17 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
-import { Logout } from '../../components/logout';
+import { Header } from '../../components/header/index.js';
+import Container from '@material-ui/core/Container';
+import { CardKitchen } from '../../components/products/card-kitchen/index.js';
 
 export const Kitchen = () => {
   return (
     <div>
-    <p>Página em construção</p>
-    <Logout />
+      <nav>
+        <Header />
+      </nav>
+      <Container>
+        <CardKitchen />
+      </Container>
     </div>
   )
 };

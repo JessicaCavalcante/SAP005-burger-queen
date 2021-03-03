@@ -3,7 +3,7 @@ import { Login } from '../src/pages/login/index.js';
 import { Register } from '../src/pages/register/index.js';
 import { Kitchen } from './pages/kitchen/index.js';
 import { Service } from '../src/pages/service/index.js';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from '../src/privateRoute.js';
 
 export const Routes = () => {
