@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Logout } from '../../components/logout';
+//import { Logout } from '../../components/logout';
 import { NavTabs } from '../../components/products/tab/index.js';
 import Container from '@material-ui/core/Container';
 import { Box } from '@material-ui/core';
