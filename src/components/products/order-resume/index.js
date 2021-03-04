@@ -34,7 +34,7 @@ export const OrderResume =  (props) => {
     return order;
   };
 
-  console.log(formatOrder());
+  //console.log(formatOrder());
 
   //const orders = JSON.parse(localStorage.getItem('order'));
 
@@ -51,7 +51,6 @@ export const OrderResume =  (props) => {
       body: JSON.stringify(orders)
     }).then(response => {
       if (response.status === 200) {
-        //localStorage.removeItem('order');
         props.addProductToQuote({'cancel': true});
         console.log(response);
       }
