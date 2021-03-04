@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import { CardActions } from "@material-ui/core";
+import {convertDate, convertTime, timeDifference } from "./timeOrder.js"
 
 const useStyles = makeStyles({
   root: {
@@ -54,8 +55,21 @@ export const CardOrder = (props) => {
       .catch(() => {alert('algo deu errado')});
   };
 
-  //console.log(props.indexOrder);
+  //ConvertDate(props.order.createdAt);
+  //console.log(ConvertTime(props.order.createdAt));
 
+  /*const createdAt = convertTime(props.order.createdAt);
+  const updatedAt = convertTime(props.order.updatedAt);
+  //console.log(updatedAt);
+  const total = Math.abs(createdAt - updatedAt);
+  const difference = Math.floor(total / 1000 / 60);
+  //const difference = timeDifference(updatedAt, createdAt);*/
+
+  const updatedAt = new Date(props.order.updatedAt);
+  const createdAt = new Date(props.order.createdAt);
+  const total = Math.abs(updatedAt) - createdAt;
+  const difference = Math.floor(total / 1000 / 60);
+  
   return (
     
       <Grid key={props.order.id} item xs={6} sm={4} >
@@ -63,6 +77,8 @@ export const CardOrder = (props) => {
           <CardContent >
             <p style={{color:'#fff'}}>Mesa: {props.order.table + " - " + props.order.client_name}</p>
             <p style={{color:'#fff'}}>Status: {orderStatus[status]}</p>
+            <p style={{color:'#fff'}}>Criado em: {createdAt}</p>
+            <p style={{color:'#fff'}}>Duração: {difference}</p>
             {
               props.order.Products.map((product, index) => (
             <p  key={index} style={{color:'#fff'}}>{product.qtd +  "x  " + product.name}</p>
