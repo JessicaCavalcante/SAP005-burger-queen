@@ -26,7 +26,8 @@ export const CardOrder = (props) => {
   const orderStatus = {
     "pending": "Pendente",
     "doing": "Em preparo",
-    "done": "Pedido pronto"
+    "done": "Pedido pronto",
+    "delivery": "Entregue"
   }
 
   const updateOrderStatus = (newStatus) => {

@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import { Breakfast } from '../../products/breakfast/index.js';
 import { AllDay } from '../../products/all-day/index.js';
 import { OrderResume } from '../order-resume/index.js';
+import { ListOrderDone } from '../order-done/index.js';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -134,6 +135,7 @@ export const NavTabs = (props) => {
           <LinkTab label="Café da manhã" href="#breakfast" {...a11yProps(0)} />
           <LinkTab label="Durante o dia" href="#all-day" {...a11yProps(1)} />
           <LinkTab label="Resumo do Pedido" href="#order-resume" {...a11yProps(2)} />
+          <LinkTab label="Lista de Pedido Pronto" href="#order-done" {...a11yProps(3)} />
         </Tabs>
       </AppBar> 
       <TabPanel value={value} index={0}>
@@ -144,6 +146,9 @@ export const NavTabs = (props) => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <OrderResume addProductToQuote={props.addProductToQuote} products={props.products} client={props.client} table={props.table} total={props.total} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <ListOrderDone />
       </TabPanel>
     </div>
   );

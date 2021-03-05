@@ -34,10 +34,6 @@ export const OrderResume =  (props) => {
     return order;
   };
 
-  //console.log(formatOrder());
-
-  //const orders = JSON.parse(localStorage.getItem('order'));
-
   const handleCreateOrder = () => {
     const token = localStorage.getItem('token');
     const orders = formatOrder();
