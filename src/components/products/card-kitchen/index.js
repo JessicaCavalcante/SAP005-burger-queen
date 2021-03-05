@@ -2,14 +2,27 @@ import React, {useState, useEffect} from "react";
 import Grid from '@material-ui/core/Grid';
 import { CardOrder } from './card.js';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import Collapse from '@material-ui/core/Collapse';
 
 
 export const CardKitchen = (props) => {
 
   const [orders, setOrders] = useState([]);
+  const [open, setOpen] = React.useState(false);
 
-  //const apiOrders = 'https://lab-api-bq.herokuapp.com/orders';
+
+  /*const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));*/
   
+  //const classes = useStyles();
 
   const getData = () => {
     const token = localStorage.getItem('token');
@@ -21,19 +34,20 @@ export const CardKitchen = (props) => {
       })
       .then(response => response.json())
         .then(result => {
-          if (result.code && result.code === 401) {
-            result = [];
+          if (!result.length) {
+            setOpen(true);
+          } else {
+            setOpen(false);
+            result.sort((current, next) => {
+              if ( current.id < next.id ) {
+                return 1;
+              }
+              if ( current.id > next.id ) {
+                return -1;
+              }
+              return 0;
+            });
           }
-          result.sort((current, next) => {
-            if ( current.id < next.id ) {
-              return 1;
-            }
-            if ( current.id > next.id ) {
-              return -1;
-            }
-            return 0;
-          
-          });
           console.log(result);
           setOrders(result)
         })
@@ -55,6 +69,14 @@ export const CardKitchen = (props) => {
           ))
         }
       </Grid>
+      <div style={{marginTop: '2rem'}}>
+        <Collapse in={open}>
+          <Alert severity="info">
+            <AlertTitle>Sem pedidos cadastrados!</AlertTitle>
+            Caso tenha algum pedido cadastrado, clique no botão — <strong>Atualizar página</strong>
+          </Alert>
+        </Collapse>
+      </div>
     </div>
   );
 }
