@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import { CardActions } from "@material-ui/core";
 import {convertDate, convertTime, formatHour} from "./timeOrder.js"
+import { updateOrderStatus } from "../updateOrder.js"
 
 const useStyles = makeStyles({
   root: {
@@ -30,28 +31,7 @@ export const CardOrder = (props) => {
     "delivery": "Entregue"
   }
 
-  const updateOrderStatus = (newStatus) => {
-    const token = localStorage.getItem('token');
-    let orderId = props.order.id;
-    fetch(`https://lab-api-bq.herokuapp.com/orders/${orderId}`, {
-      method: "PUT",
-        headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": token,
-        },
-        body: JSON.stringify({
-          "status": newStatus
-        })
-    })
-      .then(response => {
-        if (response.status === 200) {
-          setStatus(newStatus);
-        }
-      })
-      .catch(() => {alert('algo deu errado')});
-  };
-
+  
   const createdAtTime = convertTime(props.order.createdAt);
   const createdAtDate = convertDate(props.order.createdAt);
   const difference = formatHour(new Date(props.order.updatedAt), new Date(props.order.createdAt));
@@ -72,8 +52,8 @@ export const CardOrder = (props) => {
             }
           </CardContent>
           <CardActions>
-            <Button size="small" variant={status === "doing" ? "contained" : "outlined"} disabled={status === "doing" ? true : false} style={{color: "#fff"}} onClick={() => updateOrderStatus("doing")}>Em preparo</Button>
-            <Button size="small" variant={status === "done" ? "contained" : "outlined"} disabled={status === "done" ? true : false} style={{color:"#fff"}} onClick={() => updateOrderStatus("done")}>Pedido pronto</Button>
+            <Button size="small" variant={status === "doing" ? "contained" : "outlined"} disabled={status === "doing" ? true : false} style={{color: "#fff"}} onClick={() => updateOrderStatus("doing", props.order.id, setStatus)}>Em preparo</Button>
+            <Button size="small" variant={status === "done" ? "contained" : "outlined"} disabled={status === "done" ? true : false} style={{color:"#fff"}} onClick={() => updateOrderStatus("done", props.order.id, setStatus)}>Pedido pronto</Button>
           </CardActions>
         </Card>
       </Grid>
