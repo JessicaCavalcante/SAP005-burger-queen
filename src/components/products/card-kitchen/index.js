@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import Grid from '@material-ui/core/Grid';
 import { CardOrder } from './card.js';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Collapse from '@material-ui/core/Collapse';
 
@@ -11,18 +10,6 @@ export const CardKitchen = (props) => {
 
   const [orders, setOrders] = useState([]);
   const [open, setOpen] = React.useState(false);
-
-
-  /*const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }));*/
-  
-  //const classes = useStyles();
 
   const getData = () => {
     const token = localStorage.getItem('token');
