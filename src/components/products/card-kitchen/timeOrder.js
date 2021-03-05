@@ -25,9 +25,29 @@ export const convertTime = (apiDate) => {
   return correctTime;
 };
 
-/*export const timeDifference = (updatedAt,createdAt) => { 
-  //const total = Math.abs(updatedAt) - createdAt;
-  //const difference = Math.floor(total / 1000 / 60);
-  const difference = Math.abs(updatedAt - createdAt) / 36e5;
+const timeDifferenceMinutes = (updatedAt,createdAt) => { 
+  let difference = (updatedAt - createdAt) / 60;
+  difference = Math.abs(Math.round(difference / 1000));
   return difference;
-}*/
+};
+
+const convertMinutesToHours = (totalMinutes)=> {
+  const hours = (totalMinutes / 60);
+  const rhours = Math.floor(hours);
+  const minutes = Math.round((hours - rhours) * 60);
+  return [rhours, minutes];
+};
+
+export const formatHour = (updatedAt, createdAt) => {
+  const dateTime = convertMinutesToHours(timeDifferenceMinutes(updatedAt, createdAt));
+  console.log(dateTime);
+  let formatDate = '';
+  if (dateTime[0]) {
+    formatDate += `${dateTime[0]} hora(s)`;
+  }
+  if (dateTime[1]) {
+    formatDate += `${dateTime[1]} minuto(s)`;
+  }
+  return formatDate;
+}
+

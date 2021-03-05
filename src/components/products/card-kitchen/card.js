@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 import { CardActions } from "@material-ui/core";
-import {convertDate, convertTime, timeDifference } from "./timeOrder.js"
+import {convertDate, convertTime, formatHour} from "./timeOrder.js"
 
 const useStyles = makeStyles({
   root: {
@@ -22,16 +22,12 @@ export const CardOrder = (props) => {
   const classes = useStyles();
 
   const [status, setStatus] = useState(props.order.status);
+  
   const orderStatus = {
     "pending": "Pendente",
     "doing": "Em preparo",
     "done": "Pedido pronto"
   }
-  //let orderId = props.order.id;
-  //const [orderId, setOrderId] = useState("");
-
-
-  //console.log(orderId);
 
   const updateOrderStatus = (newStatus) => {
     const token = localStorage.getItem('token');
@@ -55,20 +51,9 @@ export const CardOrder = (props) => {
       .catch(() => {alert('algo deu errado')});
   };
 
-  //ConvertDate(props.order.createdAt);
-  //console.log(ConvertTime(props.order.createdAt));
-
-  /*const createdAt = convertTime(props.order.createdAt);
-  const updatedAt = convertTime(props.order.updatedAt);
-  //console.log(updatedAt);
-  const total = Math.abs(createdAt - updatedAt);
-  const difference = Math.floor(total / 1000 / 60);
-  //const difference = timeDifference(updatedAt, createdAt);*/
-
-  const updatedAt = new Date(props.order.updatedAt);
-  const createdAt = new Date(props.order.createdAt);
-  const total = Math.abs(updatedAt) - createdAt;
-  const difference = Math.floor(total / 1000 / 60);
+  const createdAtTime = convertTime(props.order.createdAt);
+  const createdAtDate = convertDate(props.order.createdAt);
+  const difference = formatHour(new Date(props.order.updatedAt), new Date(props.order.createdAt));
   
   return (
     
@@ -77,7 +62,7 @@ export const CardOrder = (props) => {
           <CardContent >
             <p style={{color:'#fff'}}>Mesa: {props.order.table + " - " + props.order.client_name}</p>
             <p style={{color:'#fff'}}>Status: {orderStatus[status]}</p>
-            <p style={{color:'#fff'}}>Criado em: {createdAt}</p>
+            <p style={{color:'#fff'}}>Criado em: {createdAtDate + " às " + createdAtTime}</p>
             <p style={{color:'#fff'}}>Duração: {difference}</p>
             {
               props.order.Products.map((product, index) => (
