@@ -30,7 +30,6 @@ export const ListOrderDone = (props) => {
         .then(result => {
           let newResult;
           if (result.length) {
-            console.log('qualquer')
               newResult = result.filter((order) => {
                 return order.status === "done";
               })
@@ -39,13 +38,6 @@ export const ListOrderDone = (props) => {
         })
         .catch((error) => {console.log(error)});
   }, []);
-
-  //console.log(ordersDone);
-
-  /*useEffect(() => {
-    getData();
-  }, []);*/
-
 
   return (
     <div>
