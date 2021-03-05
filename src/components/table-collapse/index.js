@@ -34,21 +34,21 @@ export const TableCollapse = (props) => {
           </TableCell>
           <TableCell>Mesa:{props.orderDone.table}</TableCell>
           <TableCell align="right">
-            <Button variant="contained" color="primary" onClick={() => updateOrderStatus("delivery", props.orderDone.id, setStatus)}>Confirmar Entrega</Button>
+            <Button variant="contained" color="primary" onClick={() => updateOrderStatus("delivery", props.orderDone.id, setStatus)}>{status === "done" ? "Confirmar Entrega": alert("Confirmado!")}</Button>
           </TableCell>
         </TableRow>
       </TableBody>
       <TableBody>
         <TableRow>
-          <TableCell>
+          <TableCell colSpan={3}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Table>
                 <TableBody>
                 {
                   props.orderDone.Products.map((product, index) => (
                   <TableRow key={index}>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>{product.qtd}</TableCell>
+                    <TableCell >{product.name}</TableCell>
+                    <TableCell >{product.qtd}</TableCell>
                   </TableRow>
                   ))
                 }
