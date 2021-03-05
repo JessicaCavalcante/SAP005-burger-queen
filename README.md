@@ -24,7 +24,9 @@ Somos **La Pancita Burger**, um fast food 24hrs.
 La Pancita Burguer é um pequeno restaurante de hambúrgueres, que está crescendo e necessita de uma interface em que se possa realizar pedidos utilizando um _tablet_, e enviá-los
 para a cozinha para que sejam preparados de forma ordenada e eficiente.
 
-![Página-de-cadastro](src/img/cadastro.png)
+![Página-de-cadastro](src/img/regist.png)
+
+
 ![Página-de-login](src/img/login.png)
 
 > A nossa proposta de serviço 24 horas foi muito bem recebida e, para continuar a
@@ -67,9 +69,12 @@ A interface mostra os dois menus (café da manhã e restante do dia), cada
 um com todos os seus _produtos_. O usuário pode escolher que _produtos_
 adicionar e a interface mostra o _resumo do pedido_ com o custo total.
 
-![Menu Café da Manhã](src/img/menuday.png).
-![Valor total do pedido](src/img/pedidovalortotal.png).
-![Pag. cozinha](src/img/kitchen.png).
+
+![Menu Café da Manhã](src/img/cofeeday.png).
+
+![Valor total do pedido](src/img/order_resume.png).
+
+![Pag. cozinha](src/img/Kitchen.png).
 
 ## 2. Aprendizado
 
@@ -170,8 +175,10 @@ Nosso planejamento para esse projeto foi feito no Trello, dividido por tesks par
 Com a demanda das histórias já prontas, desenvolvemos nossos protótipos de baixa fidelidade e ao validarmos, começamos o desenvolvimento dos protrótipos de média fidelidade no Marvel [Canvas](https://marvelapp.com/prototype/60b0dai/screen/76802651).
 
 
-![Protótipos baixa fidelidade](src/img/protótipo_baixa_fidelidade.jpg)
+![Protótipos baixa fidelidade](src/img/protótipo_baixa.f.png)
+
 ![Protótipo login](src/img/canvas_login.png).
+
 ![Protótipo média fidelidade Salão](src/img/pag_salon.png).
 
 ## 6. Ferramentas e Linguagens de Programação
