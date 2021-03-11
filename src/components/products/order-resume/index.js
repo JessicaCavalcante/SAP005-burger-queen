@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,7 +9,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
+import { Modal } from '../../modal/index.js';
+import { AlertCustom } from '../../alert/index.js';
 
 const useStyles = makeStyles({
   table: {
@@ -18,6 +19,8 @@ const useStyles = makeStyles({
 });
 
 export const OrderResume =  (props) => {
+  const [reject, setReject] = useState('');
+  const [confirm, setConfirm] = useState('');
   const classes = useStyles();
 
   const formatOrder = () => {
@@ -48,16 +51,37 @@ export const OrderResume =  (props) => {
     }).then(response => {
       if (response.status === 200) {
         props.addProductToQuote({'cancel': true});
-        console.log(response);
+        setConfirm(response);
+        //console.log(response);
+        return;
+      } else {
+        setReject(response);
+        return;
       }
     })
     .catch(() => {
       alert('Algo deu errado. Por favor, tente novamente.');
     })
   };
+
+  const cancelOrder = () => {
+    props.addProductToQuote({'cancel': true})
+  };
   
   return (
     <div>
+      {reject && (
+        <AlertCustom
+          severity="info"
+          message="Necessário preencher todos os campos obrigatórios, como: nome, mesa e pedido." 
+        />
+      )}
+      {confirm && (
+        <AlertCustom
+          severity="success"
+          message="Pedido confirmado!"
+        />
+      )}
       <TableContainer component={Paper} style={{width: '100%', marginLeft: '0px', marginRight: '0px'}}>
         <Table className={classes.table}>
           <TableHead>
@@ -78,7 +102,7 @@ export const OrderResume =  (props) => {
             {
               !props.products ? {} : Object.keys(props.products).map((index) => (
             <TableRow key={index}>
-              <TableCell>{props.products[index].name}</TableCell>
+              <TableCell>{props.products[index].complement ? props.products[index].name + " " + props.products[index].flavor + " adicional " + props.products[index].complement : props.products[index].flavor === null && props.products[index].complement === null ? props.products[index].name : props.products[index].name + " " + props.products[index].flavor}</TableCell>
               <TableCell align="left">{props.products[index].qtd}</TableCell>
               <TableCell align="left">{props.products[index].price + ',00'}</TableCell>
               <TableCell align="left">{props.products[index].qtd * props.products[index].price + ',00'}</TableCell>
@@ -96,10 +120,23 @@ export const OrderResume =  (props) => {
             </TableRow>
             <TableRow>
               <TableCell colSpan={2} align="right">
-                <Button variant="contained" onClick={() => props.addProductToQuote({'cancel': true})} >Cancelar Pedido</Button>
+                <Modal
+                  variant="contained"
+                  titleButton="Cancelar Pedido"
+                  title="Cancelar Pedido"
+                  content="Tem certeza que deseja cancelar o pedido ?"
+                  callback={cancelOrder}
+                />
               </TableCell>
               <TableCell colSpan={2} align="left">
-                <Button variant="contained" color="primary" onClick={() => handleCreateOrder()}>Preparar</Button>
+                <Modal
+                  variant="contained"
+                  color="primary"
+                  titleButton="Preparar"
+                  title="Confirmar Pedido"
+                  content="Tem certeza que deseja enviar o pedido para preparo ?"
+                  callback={handleCreateOrder}
+                />
               </TableCell>
             </TableRow>
           </TableBody>

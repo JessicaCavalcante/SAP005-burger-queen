@@ -1,4 +1,5 @@
 export const updateOrderStatus = (newStatus, orderId, callback) => {
+  console.log(newStatus, orderId)
   const token = localStorage.getItem('token');
   fetch(`https://lab-api-bq.herokuapp.com/orders/${orderId}`, {
     method: "PUT",

@@ -46,7 +46,7 @@ export const AllDay = (props) => {
           props.menu['hamburguer'].map((product, index) => (
             <TableBody key={index}>
               <TableRow>
-                <TableCell>{product.complement ? product.name + " " +product.flavor + " adicional " + product.complement : product.name + " " + product.flavor}</TableCell>
+                <TableCell>{product.complement ? product.name + " " + product.flavor + " adicional " + product.complement : product.name + " " + product.flavor}</TableCell>
                 <TableCell align="left">{product.price},00</TableCell>
                 <TableCell align="left">
                   <ToggleButtonCustom addProductToQuote={props.addProductToQuote} product={product} products={props.products}/>

@@ -52,7 +52,7 @@ export const CardKitchen = (props) => {
       <Grid container spacing={3}>
         {
           orders.map((order, index) => (
-            <CardOrder key={index} order={order} />
+            <CardOrder key={order.id} order={order} orderKey={index} />
           ))
         }
       </Grid>

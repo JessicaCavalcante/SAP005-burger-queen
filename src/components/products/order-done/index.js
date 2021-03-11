@@ -30,9 +30,9 @@ export const ListOrderDone = (props) => {
         .then(result => {
           let newResult;
           if (result.length) {
-              newResult = result.filter((order) => {
-                return order.status === "done";
-              })
+            newResult = result.filter((order) => {
+              return order.status === "done";
+            })
           }
           setOrdersDone(newResult);
         })
@@ -45,7 +45,7 @@ export const ListOrderDone = (props) => {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={3} style={{fontWeight: 'bolder', backgroundColor: '#8bc34a', color: '#fff', fontSize:'1rem', textAlign: 'center'}}>
+              <TableCell align="left" colSpan={4} style={{fontWeight: 'bolder', backgroundColor: '#8bc34a', color: '#fff', fontSize:'1rem', textAlign: 'center'}}>
                 Pedidos
               </TableCell>
             </TableRow>
