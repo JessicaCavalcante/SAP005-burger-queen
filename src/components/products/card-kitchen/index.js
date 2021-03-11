@@ -35,7 +35,7 @@ export const CardKitchen = (props) => {
               return 0;
             });
           }
-          console.log(result);
+          //console.log(result);
           setOrders(result)
         })
         .catch((error) => {console.log(error)});
@@ -52,7 +52,7 @@ export const CardKitchen = (props) => {
       <Grid container spacing={3}>
         {
           orders.map((order, index) => (
-            <CardOrder key={index} order={order} />
+            <CardOrder key={order.id} order={order} orderKey={index} />
           ))
         }
       </Grid>

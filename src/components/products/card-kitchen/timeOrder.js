@@ -1,6 +1,6 @@
 export const convertDate = (apiDate) => {
   const date = new Date(apiDate);
-  let day = date.getDay();
+  let day = date.getDate();
   let month = date.getMonth()+1;
   const year = date.getFullYear();
 
@@ -40,7 +40,6 @@ const convertMinutesToHours = (totalMinutes)=> {
 
 export const formatHour = (updatedAt, createdAt) => {
   const dateTime = convertMinutesToHours(timeDifferenceMinutes(updatedAt, createdAt));
-  console.log(dateTime);
   let formatDate = '';
   if (dateTime[0]) {
     formatDate += `${dateTime[0]} hora(s)`;

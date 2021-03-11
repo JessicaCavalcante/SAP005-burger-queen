@@ -24,6 +24,7 @@ export const CardOrder = (props) => {
 
   const [status, setStatus] = useState(props.order.status);
   
+  
   const orderStatus = {
     "pending": "Pendente",
     "doing": "Em preparo",
@@ -31,6 +32,7 @@ export const CardOrder = (props) => {
     "delivery": "Entregue"
   }
 
+//console.log(props.order.status, status, orderStatus[status], props.order.client_name);
   
   const createdAtTime = convertTime(props.order.createdAt);
   const createdAtDate = convertDate(props.order.createdAt);
@@ -38,16 +40,16 @@ export const CardOrder = (props) => {
   
   return (
     
-      <Grid key={props.order.id} item xs={6} sm={4} >
+      <Grid key={props.orderKey} item xs={6} sm={4} >
         <Card className={classes.root} style={{backgroundColor:'#3e9920'}}>
           <CardContent >
             <p style={{color:'#fff'}}>Mesa: {props.order.table + " - " + props.order.client_name}</p>
             <p style={{color:'#fff'}}>Status: {orderStatus[status]}</p>
             <p style={{color:'#fff'}}>Criado em: {createdAtDate + " às " + createdAtTime}</p>
-            <p style={{color:'#fff'}}>Duração: {difference}</p>
+            <p style={{color:'#fff'}}>Tempo de preparo: {difference}</p>
             {
               props.order.Products.map((product, index) => (
-            <p  key={index} style={{color:'#fff'}}>{product.qtd +  "x  " + product.name}</p>
+            <p  key={index} style={{color:'#fff'}}>{product.qtd +  "x  " + (product.complement && product.flavor ? product.name + " " + product.flavor + " adicional " + product.complement : product.flavor === null && product.complement === null ? product.name : product.name + " " + product.flavor)}</p>
               ))
             }
           </CardContent>

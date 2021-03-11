@@ -13,7 +13,7 @@ export const ToggleButtonCustom = (props) => {
       qtd = 0;
     }
     setQtdProduct(qtd);
-    props.addProductToQuote({'product': {'id': product.id, 'qtd': qtd, 'name': product.name, 'price': product.price, 'total': qtd * product.price}});
+    props.addProductToQuote({'product': {'id': product.id, 'qtd': qtd, 'name': product.name, 'flavor': product.flavor, 'complement': product.complement, 'price': product.price, 'total': qtd * product.price}});
   }
 
   return (
