@@ -35,7 +35,7 @@ export const CardKitchen = (props) => {
               return 0;
             });
           }
-          console.log(result);
+          //console.log(result);
           setOrders(result)
         })
         .catch((error) => {console.log(error)});

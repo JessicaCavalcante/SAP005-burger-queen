@@ -52,7 +52,6 @@ export const OrderResume =  (props) => {
       if (response.status === 200) {
         props.addProductToQuote({'cancel': true});
         setConfirm(response);
-        //console.log(response);
         return;
       } else {
         setReject(response);

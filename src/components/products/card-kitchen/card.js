@@ -32,7 +32,7 @@ export const CardOrder = (props) => {
     "delivery": "Entregue"
   }
 
-console.log(props.order.status, status, orderStatus[status], props.order.client_name);
+//console.log(props.order.status, status, orderStatus[status], props.order.client_name);
   
   const createdAtTime = convertTime(props.order.createdAt);
   const createdAtDate = convertDate(props.order.createdAt);
